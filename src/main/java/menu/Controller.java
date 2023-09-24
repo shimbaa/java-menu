@@ -25,7 +25,7 @@ public class Controller {
     private void setCoachName() {
         inputView.printStartMessage();
         String input = inputView.readCoachNames();
-        String[] coachNames = input.trim().split(COMMA);
+        String[] coachNames = input.split(COMMA);
 
         if (coachNames.length < MIN_COACH_NUMBER || coachNames.length > MAX_COACH_NUMBER) {
             throw new IllegalArgumentException(INVALID_COACH_NUMBER_MESSAGE);
@@ -33,7 +33,7 @@ public class Controller {
 
         List<Coach> coaches = new ArrayList<>();
         for (String coachName : coachNames) {
-            coaches.add(new Coach(coachName));
+            coaches.add(new Coach(coachName.trim()));
         }
         coachRepository = new CoachRepository(coaches);
     }
