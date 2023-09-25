@@ -17,6 +17,10 @@ public enum Category {
         this.number = number;
     }
 
+    public String getLabel() {
+        return label;
+    }
+
     public static Category get(int number) {
         return Arrays.stream(values())
                 .filter(value -> value.number == number)

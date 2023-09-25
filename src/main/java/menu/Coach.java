@@ -15,7 +15,7 @@ public class Coach {
 
     private List<String> dislikeFoods;
 
-    private Map<Days, String> menuOfWeek = new EnumMap<>(Days.class);
+    private final Map<Days, String> menuOfWeek = new EnumMap<>(Days.class);
 
     public Coach(String name) {
         validateName(name);
@@ -23,7 +23,7 @@ public class Coach {
     }
 
     public void setMenuOfADay(Days day, String menu) {
-        if (!dislikeFoods.isEmpty() && dislikeFoods.contains(menu) || menuOfWeek.containsValue(menu)) {
+        if (dislikeFoods != null && dislikeFoods.contains(menu) || menuOfWeek.containsValue(menu)) {
             Controller.recommendStatus = RecommendStatus.INVALID;
         }
         menuOfWeek.put(day, menu);
@@ -31,6 +31,10 @@ public class Coach {
 
     public String getName() {
         return name;
+    }
+
+    public Map<Days, String> getMenuOfWeek() {
+        return menuOfWeek;
     }
 
     public void addDislikeFood(String[] input) {

@@ -7,11 +7,15 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class CategoryResult {
-    private static Map<Days, Category> result = new EnumMap<>(Days.class);
+    private static final Map<Days, Category> result = new EnumMap<>(Days.class);
 
     public void setCategory(Days days, Category category) {
         validateNumberOfCategory(category);
         result.put(days, category);
+    }
+
+    public static Map<Days, Category> getResult() {
+        return result;
     }
 
     private void validateNumberOfCategory(Category category) {

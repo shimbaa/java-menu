@@ -1,5 +1,8 @@
 package menu;
 
+import menu.view.InputView;
+import menu.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,12 +15,14 @@ public class Controller {
 
     public static RecommendStatus recommendStatus;
     private final InputView inputView;
+    private final OutputView outputView;
     private CoachRepository coachRepository;
 
     private RecommendService recommendService = new RecommendService();
 
-    public Controller(InputView inputView) {
+    public Controller(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void run() {
@@ -28,6 +33,9 @@ public class Controller {
             recommendService.recommend(coachRepository.getCoaches());
         }
         while (recommendStatus == RecommendStatus.INVALID);
+
+        List<Coach> coaches = coachRepository.getCoaches();
+        outputView.printResult(coaches);
     }
 
     private void setCoachName() {
