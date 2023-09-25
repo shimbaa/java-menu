@@ -40,7 +40,7 @@ public class OutputView {
 
         Days[] days = Days.values();
         for (Days day : days) {
-            format.append("/ ").append(day.getLabel()).append(" ");
+            format.append("| ").append(day.getLabel()).append(" ");
         }
         return format;
     }
@@ -52,7 +52,7 @@ public class OutputView {
         Collection<Category> values = result.values();
 
         for (Category value : values) {
-            format.append("/ ").append(value.getLabel()).append(" ");
+            format.append("| ").append(value.getLabel()).append(" ");
         }
         return format;
     }
@@ -63,7 +63,7 @@ public class OutputView {
         stringBuilder.append(coach.getName()).append(" ");
         Map<Days, String> menuOfWeek = coach.getMenuOfWeek();
         for (String value : menuOfWeek.values()) {
-            stringBuilder.append("/ ").append(value).append(" ");
+            stringBuilder.append("| ").append(value).append(" ");
         }
         return stringBuilder;
     }
