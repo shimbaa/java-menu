@@ -1,7 +1,7 @@
 package menu.view;
 
-import menu.CategoryResult;
-import menu.Coach;
+import menu.domain.CategoryResult;
+import menu.domain.Coach;
 import menu.domain.Category;
 import menu.domain.Days;
 

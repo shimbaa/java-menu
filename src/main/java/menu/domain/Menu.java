@@ -2,10 +2,7 @@ package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Menu {
     private static final Map<Category, List<String>> menu = new EnumMap<>(Category.class);
@@ -31,7 +28,6 @@ public class Menu {
         List<String> menus = getMenusOf(category);
         return Randoms.shuffle(menus).get(0);
     }
-
     private List<String> getMenusOf(Category category) {
         return menu.get(category);
     }

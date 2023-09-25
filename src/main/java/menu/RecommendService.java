@@ -1,9 +1,7 @@
 package menu;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import menu.domain.Category;
-import menu.domain.Days;
-import menu.domain.Menu;
+import menu.domain.*;
 
 import java.util.List;
 

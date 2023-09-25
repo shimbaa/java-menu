@@ -1,6 +1,6 @@
-package menu;
+package menu.domain;
 
-import menu.domain.Days;
+import menu.Controller;
 
 import java.util.*;
 

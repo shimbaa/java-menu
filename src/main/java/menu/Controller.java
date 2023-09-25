@@ -1,5 +1,8 @@
 package menu;
 
+import menu.domain.Coach;
+import menu.domain.CoachRepository;
+import menu.domain.RecommendStatus;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -18,7 +21,7 @@ public class Controller {
     private final OutputView outputView;
     private CoachRepository coachRepository;
 
-    private RecommendService recommendService = new RecommendService();
+    private final RecommendService recommendService = new RecommendService();
 
     public Controller(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -26,20 +29,19 @@ public class Controller {
     }
 
     public void run() {
+        inputView.printStartMessage();
         setCoachName();
         setCoachDislikeFood();
 
         do {
             recommendService.recommend(coachRepository.getCoaches());
-        }
-        while (recommendStatus == RecommendStatus.INVALID);
+        } while (recommendStatus == RecommendStatus.INVALID);
 
         List<Coach> coaches = coachRepository.getCoaches();
         outputView.printResult(coaches);
     }
 
     private void setCoachName() {
-        inputView.printStartMessage();
         String input = inputView.readCoachNames();
         String[] coachNames = input.split(COMMA);
 
