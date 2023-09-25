@@ -2,10 +2,18 @@ package menu;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import menu.domain.Category;
+import menu.domain.Menu;
 
 public class RecommendService {
 
-    public Category getCategoryByRandomNumber() {
+    Menu menu = new Menu();
+
+    public String getRandomMenu() {
+        Category category = getRandomCategory();
+        return menu.getRandomMenuOf(category);
+    }
+
+    public Category getRandomCategory() {
         int randomNumber = getRandomNumber();
         return getCategoryByNumber(randomNumber);
     }

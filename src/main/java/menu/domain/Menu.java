@@ -1,5 +1,7 @@
 package menu.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
@@ -14,11 +16,23 @@ public class Menu {
     private static final String[] ASIAN_MENU = {"팟타이", "카오 팟", "나시고렝", "파인애플 볶음밥", "쌀국수", "똠얌꿍", "반미", "월남쌈", "분짜"};
     private static final String[] WESTERN_MENU = {"라자냐", "그라탱", "뇨끼", "끼슈", "프렌치 토스트", "바게트", "스파게티", "피자", "파니니"};
 
-    public static void initMenu() {
+    public Menu() {
+        initMenu();
+    }
+    private void initMenu() {
         menu.put(Category.JAPANESE, Arrays.asList(JAPANESE_MENU));
         menu.put(Category.KOREAN, Arrays.asList(KOREAN_MENU));
         menu.put(Category.CHINESE, Arrays.asList(CHINESE_MENU));
         menu.put(Category.ASIAN, Arrays.asList(ASIAN_MENU));
         menu.put(Category.WESTERN, Arrays.asList(WESTERN_MENU));
+    }
+
+    public String getRandomMenuOf(Category category) {
+        List<String> menus = getMenusOf(category);
+        return Randoms.shuffle(menus).get(0);
+    }
+
+    private List<String> getMenusOf(Category category) {
+        return menu.get(category);
     }
 }
