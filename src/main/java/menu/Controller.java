@@ -5,13 +5,16 @@ import java.util.List;
 
 public class Controller {
 
-    public static final int MIN_COACH_NUMBER = 2;
-    public static final int MAX_COACH_NUMBER = 5;
-    public static final String INVALID_COACH_NUMBER_MESSAGE = "[ERROR] 코치는 최소 2명, 최대 5명까지 입력 가능 합니다.";
-    public static final String COMMA = ",";
-    private final InputView inputView;
+    private static final int MIN_COACH_NUMBER = 2;
+    private static final int MAX_COACH_NUMBER = 5;
+    private static final String INVALID_COACH_NUMBER_MESSAGE = "[ERROR] 코치는 최소 2명, 최대 5명까지 입력 가능 합니다.";
+    private static final String COMMA = ",";
 
+    public static RecommendStatus recommendStatus;
+    private final InputView inputView;
     private CoachRepository coachRepository;
+
+    private RecommendService recommendService = new RecommendService();
 
     public Controller(InputView inputView) {
         this.inputView = inputView;
@@ -20,6 +23,11 @@ public class Controller {
     public void run() {
         setCoachName();
         setCoachDislikeFood();
+
+        do {
+            recommendService.recommend(coachRepository.getCoaches());
+        }
+        while (recommendStatus == RecommendStatus.INVALID);
     }
 
     private void setCoachName() {

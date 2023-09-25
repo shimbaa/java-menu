@@ -1,8 +1,8 @@
 package menu;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import menu.domain.Days;
+
+import java.util.*;
 
 public class Coach {
 
@@ -15,9 +15,18 @@ public class Coach {
 
     private List<String> dislikeFoods;
 
+    private Map<Days, String> menuOfWeek = new EnumMap<>(Days.class);
+
     public Coach(String name) {
         validateName(name);
         this.name = name;
+    }
+
+    public void setMenuOfADay(Days day, String menu) {
+        if (!dislikeFoods.isEmpty() && dislikeFoods.contains(menu) || menuOfWeek.containsValue(menu)) {
+            Controller.recommendStatus = RecommendStatus.INVALID;
+        }
+        menuOfWeek.put(day, menu);
     }
 
     public String getName() {
