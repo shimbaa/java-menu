@@ -43,11 +43,8 @@ public class Controller {
     private void setCoachDislikeFood() {
         List<Coach> coaches = coachRepository.getCoaches();
         for (Coach coach : coaches) {
-            String input = inputView.readDislikeFoods(coach.getName());
-            if (!input.isEmpty()) {
-                String[] dislikeFoods = input.trim().split(",");
-                coach.addDislikeFood(dislikeFoods);
-            }
+            List<String> foods = inputView.getDislikeFoods(coach.getName());
+            coach.setDislikeFood(foods);
         }
     }
 }
